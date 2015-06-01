@@ -1,14 +1,15 @@
-#include<e_object.h>
-#include<env.h>
+#include<stdlib.h>
+#include "top_env.h"
+#include "env.h"
 
-EObject* new_integer(int value, Env* env) {
-    EObject* integer = new_object(Env->top[CORE_INTEGER]);
+EObject* new_integer(int value) {
+    EObject* integer = new_object(CORE_INTEGER);
     integer->value.i = value;
     return integer;
 }
 
-EObject* new_string(char* value, Env* env) {
-    EObject* string = new_object(Env->top[CORE_STRING]);
+EObject* new_string(char* value) {
+    EObject* string = new_object(CORE_STRING);
     string->value.s = value;
     return string;
 }
@@ -24,7 +25,7 @@ Env* child_of_env(Env* parent) {
 }
 
 Env* new_env_with_max_variables(Env* parent, size_t max_variables_count) {
-    Env* env = (Env)malloc(sizeof(Env));
+    Env* env = (Env*)malloc(sizeof(Env));
     if(parent == NULL) {
         env->top = env;
     }
@@ -35,7 +36,7 @@ Env* new_env_with_max_variables(Env* parent, size_t max_variables_count) {
         env->top = parent;
     }
     env->parent = parent;
-    env->objects = (EObject**)malloc(max_variables_count * sizeof(Eobject*));
+    env->objects = (EObject**)malloc(max_variables_count * sizeof(EObject*));
     return env;
 }
 

@@ -1,4 +1,4 @@
-#include<method.h>
+#include "method.h"
 
 const size_t DEFAULT_METHOD_STACK_LIMIT = 512;
 EObject* invoke_method(OpcodeBody method, EObject* this, EObject** args, size_t args_count, Env* env, Data* data) {

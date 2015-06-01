@@ -2,7 +2,7 @@
 
 Env* init_top_env() {
     TOP_ENV = new_env();
-    BASE_OBJECT  = new_class();
+    BASE_OBJECT  = new_class(NULL);
     CORE_INTEGER = new_class(BASE_OBJECT);
     CORE_BOOLEAN = new_class(BASE_OBJECT);
     CORE_STRING  = new_class(BASE_OBJECT);

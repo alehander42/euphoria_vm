@@ -1,9 +1,9 @@
 TARGET = euphoria
 LIBS = -lm
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -g
 
-.PHONY: default all clean
+.PHONY: default all clean debug
 
 default: $(TARGET)
 all: default
@@ -12,13 +12,14 @@ OBJECTS = $(patsubst %.c, %.o, $(wildcard *.c))
 HEADERS = $(wildcard *.h)
 
 %.o: %.c $(HEADERS)
-    $(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PRECIOUS: $(TARGET) $(OBJECTS)
 
 $(TARGET): $(OBJECTS)
-    $(CC) $(OBJECTS) -Wall $(LIBS) -o $@
+	$(CC) $(OBJECTS) $(LIBS) -o $@ -g
+
 
 clean:
-    -rm -f *.o
-    -rm -f $(TARGET)
+	-rm -f *.o
+	-rm -f $(TARGET)

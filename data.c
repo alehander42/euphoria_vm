@@ -1,3 +1,5 @@
+#include<stdlib.h>
+#include "top_env.h"
 #include "data.h"
 
 Data* new_data(char** strings, size_t strings_count, char** labels, size_t labels_count) {
